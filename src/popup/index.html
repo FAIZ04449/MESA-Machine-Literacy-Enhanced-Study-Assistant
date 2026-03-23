@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Study Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="app-container">
+    <header>
+      <div class="logo">
+        <h1>MESA</h1>
+      </div>
+      <button id="settings-btn" class="icon-btn" title="Settings">⚙️</button>
+    </header>
+
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="summarize">Summarize</button>
+      <button class="tab-btn" data-tab="chat">Chat</button>
+      <button class="tab-btn" data-tab="cheatsheet">Cheatsheet</button>
+    </nav>
+
+    <main>
+      <div id="summarize-tab" class="tab-content active">
+        <div class="action-area">
+          <button id="analyze-btn" class="primary-btn">Analyze Current Page</button>
+        </div>
+        <div id="summary-output" class="output-area placeholder">
+          <p>Click "Analyze" to get a summary of the current page or PDF.</p>
+        </div>
+      </div>
+
+      <div id="chat-tab" class="tab-content">
+        <div id="chat-history" class="chat-history">
+          <div class="message bot">
+            <p>Hello! Ask me anything about the content you're reading.</p>
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chat-input" placeholder="Ask a question...">
+          <button id="send-btn" class="icon-btn">➤</button>
+        </div>
+      </div>
+
+      <div id="cheatsheet-tab" class="tab-content">
+        <div class="action-area">
+          <button id="generate-cheatsheet-btn" class="primary-btn">Generate Cheatsheet</button>
+        </div>
+        <div id="cheatsheet-output" class="output-area placeholder">
+          <p>Generate a quick revision cheatsheet from this content.</p>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© Created by Mobashshar Faiz</p>
+    </footer>
+  </div>
+  <script type="module" src="popup.js"></script>
+</body>
+
+</html>

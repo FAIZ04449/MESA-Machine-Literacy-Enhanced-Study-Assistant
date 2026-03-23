@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Study Settings</title>
+    <link rel="stylesheet" href="options.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Smart Study Settings</h1>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>API Configuration</h2>
+                <p class="description">Select your preferred AI provider. Kimi is recommended for a free/low-cost
+                    experience.</p>
+
+                <div class="input-group">
+                    <label for="ai-provider">AI Provider</label>
+                    <select id="ai-provider">
+                        <option value="kimi">Kimi Code AI (Moonshot)</option>
+                        <option value="gemini">Google Gemini</option>
+                        <option value="openai">OpenAI (ChatGPT)</option>
+                    </select>
+                </div>
+
+                 <div id="kimi-config" class="config-section">
+                    <p class="description">Using <strong>NVIDIA Hosted API</strong>. No local GPU required.</p>
+                    <div class="input-group">
+                        <label for="kimi-api-key">NVIDIA API Key (NGC)</label>
+                        <input type="password" id="kimi-api-key" placeholder="nvapi-...">
+                    </div>
+                </div>
+
+                <div id="gemini-config" class="config-section" style="display: none;">
+                    <p class="description">Get your Gemini API key from <a href="https://aistudio.google.com/app/apikey"
+                            target="_blank">Google AI Studio</a>.</p>
+                    <div class="input-group">
+                        <label for="gemini-api-key">Gemini API Key</label>
+                        <input type="password" id="gemini-api-key" placeholder="AIza...">
+                    </div>
+                </div>
+
+                <div id="openai-config" class="config-section" style="display: none;">
+                    <p class="description">Get your OpenAI API key from <a
+                            href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI Dashboard</a>.
+                    </p>
+                    <div class="input-group">
+                        <label for="openai-api-key">OpenAI API Key</label>
+                        <input type="password" id="openai-api-key" placeholder="sk-...">
+                    </div>
+                </div>
+
+                <button id="save-btn" class="primary-btn">Save Settings</button>
+
+                <div style="margin-top: 20px; border-top: 1px solid #334155; padding-top: 20px;">
+                    <h3>Diagnostic Tools</h3>
+                    <button id="check-models-btn" class="secondary-btn"
+                        style="margin-top: 10px; width: 100%; padding: 10px; background: transparent; border: 1px solid #3b82f6; color: #3b82f6; border-radius: 8px; cursor: pointer;">Check
+                        Available Models</button>
+                    <pre id="models-output"
+                        style="margin-top: 10px; background: #0f172a; padding: 10px; border-radius: 6px; font-size: 0.8rem; overflow-x: auto; display: none;"></pre>
+                </div>
+
+                <p id="status" class="status-msg"></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>© Created by Mobashshar Faiz</p>
+        </footer>
+    </div>
+    <script type="module" src="options.js"></script>
+</body>
+
+</html>

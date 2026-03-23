@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "MESA",
+  "version": "1.0.1",
+  "description": "AI-powered study assistant for web pages and PDFs.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "https://generativelanguage.googleapis.com/*",
+    "https://integrate.api.nvidia.com/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "options_page": "src/options/index.html",
+  "background": {
+    "service_worker": "src/background/index.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content/index.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
