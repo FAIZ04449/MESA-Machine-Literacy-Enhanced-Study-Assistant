@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     const aiProviderSelect = document.getElementById('ai-provider');
-    const kimiKeyInput = document.getElementById('kimi-api-key');
     const geminiKeyInput = document.getElementById('gemini-api-key');
     const openaiKeyInput = document.getElementById('openai-api-key');
     const saveBtn = document.getElementById('save-btn');
@@ -13,12 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // Load saved settings
-    chrome.storage.sync.get(['aiProvider', 'kimiApiKey', 'geminiApiKey', 'openaiApiKey'], (result) => {
+    chrome.storage.sync.get(['aiProvider', 'geminiApiKey', 'openaiApiKey'], (result) => {
         if (result.aiProvider) {
             aiProviderSelect.value = result.aiProvider;
             updateVisibleSection(result.aiProvider);
         }
-        if (result.kimiApiKey) kimiKeyInput.value = result.kimiApiKey;
         if (result.geminiApiKey) geminiKeyInput.value = result.geminiApiKey;
         if (result.openaiApiKey) openaiKeyInput.value = result.openaiApiKey;
     });
@@ -38,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
     saveBtn.addEventListener('click', () => {
         const settings = {
             aiProvider: aiProviderSelect.value,
-            kimiApiKey: kimiKeyInput.value.trim(),
             geminiApiKey: geminiKeyInput.value.trim(),
             openaiApiKey: openaiKeyInput.value.trim()
         };

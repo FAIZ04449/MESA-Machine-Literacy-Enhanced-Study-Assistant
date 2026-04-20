@@ -1,29 +1,14 @@
-async function getApiKey() {
-    return new Promise((resolve) => {
-        chrome.storage.sync.get(['kimiApiKey'], (result) => {
-            resolve(result.kimiApiKey);
-        });
-    });
-}
+
 
 async function makeKimiRequest(messages) {
-    const apiKey = await getApiKey();
-    if (!apiKey) {
-        throw new Error('Kimi API Key not found. Please set it in the extension options.');
-    }
-
     try {
-        const response = await fetch('https://integrate.api.nvidia.com/v1/chat/completions', {
+        const response = await fetch('http://localhost:3000/api/kimi/chat', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${apiKey}`
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                model: "moonshotai/kimi-k2.5",
-                messages: messages,
-                temperature: 0.3
+                messages: messages
             })
         });
 
@@ -35,14 +20,14 @@ async function makeKimiRequest(messages) {
             } catch (e) {
                 errorMsg = `Status ${response.status}: ${response.statusText}`;
             }
-            throw new Error(`NVIDIA API Error: ${errorMsg}`);
+            throw new Error(`Backend Proxy Error: ${errorMsg}`);
         }
 
         const data = await response.json();
         return data.choices[0].message.content;
     } catch (err) {
         if (err.name === 'TypeError' && err.message === 'Failed to fetch') {
-            throw new Error('Network error: Failed to connect to NVIDIA API. Please check your internet connection and ensure the extension has permission to access integrate.api.nvidia.com. Also, try reloading the extension in chrome://extensions.');
+            throw new Error('Network error: Failed to connect to the backend server. Please ensure the backend proxy is running on localhost:3000.');
         }
         throw err;
     }
@@ -70,5 +55,5 @@ export async function answerQuestion(context, question) {
 }
 
 export async function listModels() {
-    return "moonshotai/kimi-k2.5";
+    return "moonshotai/kimi-k2.5 (via Backend Proxy)";
 }
