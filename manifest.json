@@ -3,6 +3,11 @@
   "name": "MESA",
   "version": "1.0.1",
   "description": "AI-powered study assistant for web pages and PDFs.",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "permissions": [
     "activeTab",
     "storage",

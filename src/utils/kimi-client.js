@@ -2,7 +2,7 @@
 
 async function makeKimiRequest(messages) {
     try {
-        const response = await fetch('http://localhost:3000/api/kimi/chat', {
+        const response = await fetch('https://mesa-backend-ffkr.onrender.com/api/kimi/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ async function makeKimiRequest(messages) {
         return data.choices[0].message.content;
     } catch (err) {
         if (err.name === 'TypeError' && err.message === 'Failed to fetch') {
-            throw new Error('Network error: Failed to connect to the backend server. Please ensure the backend proxy is running on localhost:3000.');
+            throw new Error('Network error: Failed to connect to the backend server. Please ensure the backend proxy is running at https://mesa-backend-ffkr.onrender.com.');
         }
         throw err;
     }
