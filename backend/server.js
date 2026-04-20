@@ -8,6 +8,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json({ limit: '10mb' })); // to handle large context strings
 
+// Simple root route for health check / visual confirmation
+app.get('/', (req, res) => {
+    res.send('MESA Backend Proxy is running perfectly!');
+});
+
 app.post('/api/kimi/chat', async (req, res) => {
     try {
         const { messages } = req.body;
