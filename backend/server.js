@@ -34,7 +34,7 @@ app.post('/api/kimi/chat', async (req, res) => {
                 'Authorization': `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                model: "moonshotai/kimi-k2.5",
+                model: "meta/llama-3.1-8b-instruct",
                 messages: messages,
                 temperature: 0.3
             })
